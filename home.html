@@ -87,7 +87,7 @@
         async function activateWater() {
             try {
                 const response = await fetch(`${ESP32_IP}/cancelar`, {
-                    method: "GET"
+                    method: "POST"
                 });
                 if (response.ok) {
                     alert("Solicitud de riego cancelada");
