@@ -1,0 +1,60 @@
+// Configura la IP de tu ESP32
+const ESP32_IP = "http://TU_ESP32_IP"; // Reemplaza con la IP de tu ESP32
+
+// Función para obtener datos de sensores en tiempo real
+async function fetchSensorData() {
+    try {
+        const response = await fetch(`${ESP32_IP}/data`);
+        const data = await response.json();
+        
+        // Actualiza los valores en la página
+        document.getElementById("Lall").innerText = data.flujo; // Total de litros de flujo
+        document.getElementById("waterLevel").innerText = data.distancia; // Nivel de agua trasladada
+    } catch (error) {
+        console.error("Error al obtener datos del ESP32:", error);
+    }
+}
+
+// Función para solicitar agua en función del número ingresado
+async function requestWater() {
+    const litros = document.getElementById("litros").value;
+    if (litros > 0) {
+        try {
+            const response = await fetch(`${ESP32_IP}/solicitar`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ litros: parseInt(litros) })
+            });
+            if (response.ok) {
+                alert("Solicitud enviada correctamente");
+            } else {
+                alert("Error al enviar la solicitud");
+            }
+        } catch (error) {
+            console.error("Error al enviar solicitud al ESP32:", error);
+        }
+    } else {
+        alert("Por favor, ingrese una cantidad válida de litros.");
+    }
+}
+
+// Función para cancelar la solicitud de agua
+async function activateWater() {
+    try {
+        const response = await fetch(`${ESP32_IP}/cancelar`, {
+            method: "POST"
+        });
+        if (response.ok) {
+            alert("Solicitud de riego cancelada");
+        } else {
+            alert("Error al cancelar la solicitud");
+        }
+    } catch (error) {
+        console.error("Error al cancelar solicitud en el ESP32:", error);
+    }
+}
+
+// Llama a la función de monitoreo de datos cada segundo
+setInterval(fetchSensorData, 1000);
