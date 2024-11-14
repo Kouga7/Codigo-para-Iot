@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SISTEMA DE RIEGO</title>
+    <title>SITEMA DE RIEGO</title>
     <link rel="shortcut icon" href="./images/universidad_nacional_de_huanc.jfif" type="image/x-icon">
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/estilos.css">
@@ -12,12 +12,12 @@
 <body>
     <header class="hero">
         <img src="./images/UAN.jpg" alt="Descripción de la imagen" width="300" height="200">
-        <p>UNIVERSIDAD NACIONAL DE HUANCAVELICA1</p>
+        <p>UNIVERSIDAD NACIONAL DE HUANCAVELICA</p>
         <p>Control y monitoreo de los recursos de agua en tiempo real.</p>
     </header>
 
     <section id="capacidad">
-        <h2>Capacidad del reservorio</h2>
+        <h2>capacidad del reservorio</h2>
         <img src="./images/deposito.jpg" alt="Descripción de la imagen" width="300" height="200">
         <p>Total de litros: <span id="Lall">Cargando...</span>%</p>
     </section>
@@ -31,7 +31,7 @@
             <button onclick="requestWater()">Solicitar Agua</button>
         </div>
         <div>
-            <button onclick="cancelRequest()">Cancelar</button>
+            <button onclick="activateWater()">Cancelar</button>
         </div>
     </section>
 
@@ -40,8 +40,8 @@
         <h2>Monitoreo en Tiempo Real</h2>
         <p>Traslado del agua: <span id="waterLevel">Cargando...</span>L</p>
     </section>
-    <script>
-        // Configura la IP de tu ESP32
+    <script src="script.js">
+    // Configura la IP de tu ESP32
         const ESP32_IP = "http://192.168.0.141"; // Reemplaza con la IP de tu ESP32
         
         // Función para obtener datos de sensores en tiempo real
@@ -63,7 +63,13 @@
             const litros = document.getElementById("litros").value;
             if (litros > 0) {
                 try {
-                    const response = await fetch(`${ESP32_IP}/solicitar?litros=${litros}`, { method: "GET" });
+                    const response = await fetch(`${ESP32_IP}/solicitar`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ litros: parseInt(litros) })
+                    });
                     if (response.ok) {
                         alert("Solicitud enviada correctamente");
                     } else {
@@ -78,9 +84,11 @@
         }
         
         // Función para cancelar la solicitud de agua
-        async function cancelRequest() {
+        async function activateWater() {
             try {
-                const response = await fetch(`${ESP32_IP}/cancelar`, { method: "GET" });
+                const response = await fetch(`${ESP32_IP}/cancelar`, {
+                    method: "POST"
+                });
                 if (response.ok) {
                     alert("Solicitud de riego cancelada");
                 } else {
@@ -93,6 +101,6 @@
         
         // Llama a la función de monitoreo de datos cada segundo
         setInterval(fetchSensorData, 1000);
-    </script>
+        </script>
 </body>
 </html>
