@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SITEMA DE RIEGO</title>
+    <title>SISTEMA DE RIEGO</title>
     <link rel="shortcut icon" href="./images/universidad_nacional_de_huanc.jfif" type="image/x-icon">
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/estilos.css">
@@ -16,13 +16,22 @@
         <p>Control y monitoreo de los recursos de agua en tiempo real.</p>
     </header>
 
-    <section id="capacidad">
-        <h2>capacidad del reservorio</h2>
-        <img src="./images/deposito.jpg" alt="Descripción de la imagen" width="300" height="200">
-        <p>Total de litros: <span id="Lall">Cargando...</span>%</p>
+    <section class="row">
+        <!-- Capacidad del reservorio -->
+        <div class="section">
+            <h2>Capacidad del Reservorio</h2>
+            <img src="./images/deposito.jpg" alt="Imagen del depósito" width="300" height="200">
+            <p>Total de litros: <span id="Lall">Cargando...</span>%</p>
+        </div>
+
+        <!-- Selección de lugar de riego -->
+        <div class="section">
+            <h2>Selección de Lugar de Riego</h2>
+            <img src="./images/para riego.jpg" alt="Imagen para selección de riego" width="300" height="200">
+            <p>Chacra 1: <span id="chacra1">Cargando...</span>%</p>
+        </div>
     </section>
 
-    <!-- Sección de control de dispositivos -->
     <section id="control">
         <h2>Control de Riego</h2>
         <div>
@@ -35,72 +44,10 @@
         </div>
     </section>
 
-    <!-- Sección de monitoreo de sensores -->
     <section id="monitoreo">
         <h2>Monitoreo en Tiempo Real</h2>
         <p>Traslado del agua: <span id="waterLevel">Cargando...</span>L</p>
     </section>
-    <script src="script.js">
-    // Configura la IP de tu ESP32
-        const ESP32_IP = "http://192.168.0.141"; // Reemplaza con la IP de tu ESP32
-        
-        // Función para obtener datos de sensores en tiempo real
-        async function fetchSensorData() {
-            try {
-                const response = await fetch(`${ESP32_IP}/data`);
-                const data = await response.json();
-                
-                // Actualiza los valores en la página
-                document.getElementById("Lall").innerText = data.flujo; // Total de litros de flujo
-                document.getElementById("waterLevel").innerText = data.distancia; // Nivel de agua trasladada
-            } catch (error) {
-                console.error("Error al obtener datos del ESP32:", error);
-            }
-        }
-        
-        // Función para solicitar agua en función del número ingresado
-        async function requestWater() {
-            const litros = document.getElementById("litros").value;
-            if (litros > 0) {
-                try {
-                    const response = await fetch(`${ESP32_IP}/solicitar`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({ litros: parseInt(litros) })
-                    });
-                    if (response.ok) {
-                        alert("Solicitud enviada correctamente");
-                    } else {
-                        alert("Error al enviar la solicitud");
-                    }
-                } catch (error) {
-                    console.error("Error al enviar solicitud al ESP32:", error);
-                }
-            } else {
-                alert("Por favor, ingrese una cantidad válida de litros.");
-            }
-        }
-        
-        // Función para cancelar la solicitud de agua
-        async function activateWater() {
-            try {
-                const response = await fetch(`${ESP32_IP}/cancelar`, {
-                    method: "POST"
-                });
-                if (response.ok) {
-                    alert("Solicitud de riego cancelada");
-                } else {
-                    alert("Error al cancelar la solicitud");
-                }
-            } catch (error) {
-                console.error("Error al cancelar solicitud en el ESP32:", error);
-            }
-        }
-        
-        // Llama a la función de monitoreo de datos cada segundo
-        setInterval(fetchSensorData, 1000);
-        </script>
+    <script src="script.js"></script>
 </body>
 </html>
