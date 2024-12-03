@@ -1,6 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@300;400;600;700&display=swap');
+/* estilos.css */
 
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
 
-body{
-    font-family: "Poppins", sans-serif;
+header.hero {
+    background: #50c395;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header img {
+    border-radius: 2.5px;
+    margin-bottom: 10px;
+}
+
+/* Diseño horizontal de las secciones */
+.row {
+    display: flex;
+    justify-content: space-around; /* Espaciado horizontal uniforme */
+    align-items: flex-start; /* Alineación superior */
+    margin: 20px auto;
+    max-width: 1200px;
+    gap: 20px;
+}
+
+/* Estilo para cada sección individual */
+.section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1; /* Igual distribución del ancho */
+    max-width: 500px;
+}
+
+.section img {
+    border-radius: 5px;
+    max-width: 100%;
+    height: auto;
+}
+
+.section h2 {
+    font-size: 24px;
+    color: #21d639;
+    margin-bottom: 15px;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column; /* Apila las secciones verticalmente */
+        gap: 10px;
+    }
 }
