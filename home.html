@@ -48,6 +48,26 @@
         <h2>Monitoreo en Tiempo Real</h2>
         <p>Traslado del agua: <span id="waterLevel">Cargando...</span>L</p>
     </section>
-    <script src="script.js"></script>
+    <script>
+        // Función para cerrar sesión y borrar el estado del usuario
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = "login.html";
+        }
+
+        // Ejemplo de funciones de control del sistema
+        function requestWater() {
+            const liters = document.getElementById('litros').value;
+            if (liters > 0) {
+                alert(`Se ha solicitado ${liters} litros de agua.`);
+            } else {
+                alert("Ingrese una cantidad válida de litros.");
+            }
+        }
+
+        function cancelWater() {
+            alert("Se ha cancelado la solicitud de agua.");
+        }
+    </script>
 </body>
 </html>
