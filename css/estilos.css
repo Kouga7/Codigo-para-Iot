@@ -5,20 +5,68 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background-color: #e5fdff;
     color: #333;
-}
+}   
 
+/* Header principal */
 header.hero {
     background: #50c395;
-    color: white;
+    color: #234043;
     text-align: center;
-    padding: 20px;
+    font-size: 30px;
+    padding: 14px;
+    border-radius: 15px;
+    position: relative; /* Permite posicionar elementos dentro del header */
+    display: flex; /* Activamos el modelo flexbox */
+    justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+}
+
+/* Para la imagen dentro del header */
+header.hero img {
+    max-width: 180px; /* Tamaño de la imagen ajustable */
+    height: auto;
+}
+
+/* Para el botón de cerrar sesión */
+header.hero button {
+    background-color: #ff8800;
+    border:transparent; /* Borde estilo solido */
+    border-width: 3px;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    cursor: pointer;
 }
 
 header img {
     border-radius: 2.5px;
     margin-bottom: 10px;
+}
+header.hero p {
+    text-align: absolute;
+    width: 100%;
+}
+
+/* Botón de cerrar sesión */
+button.btn-logout {
+    background-color: #e20606; /* Rojo */
+    color: rgb(243, 9, 9);
+    border: none;
+    padding: 10px 15px; 
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    position: absolute; /* Posiciona el botón dentro del header */
+    top: 0px; /* Espaciado desde la parte superior */
+    left: 0px; /* Espaciado desde la parte izquierda */
+    box-shadow: 0 2px 4px rgb(236, 2, 2);
+    transition: background-color 0.3s;
+}
+
+button.btn-logout:hover {
+    background-color: #0056b3; /* Color azul más oscuro al pasar el cursor */
 }
 
 /* Diseño horizontal de las secciones */
@@ -33,19 +81,24 @@ header img {
 
 /* Estilo para cada sección individual */
 .section {
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
     text-align: center;
     flex: 1; /* Igual distribución del ancho */
-    max-width: 500px;
+    max-width: 1200px;
+    max-height:    400px;
 }
+
 
 .section img {
     border-radius: 5px;
     max-width: 100%;
     height: auto;
+    width: 300px;
 }
 
 .section h2 {
@@ -53,11 +106,69 @@ header img {
     color: #21d639;
     margin-bottom: 15px;
 }
+.section h3 {
+    font-size: 24px;
+    color: #21d639;
+    margin-bottom: 15px;
+    height: 20px;
+    display: flex; /* Convierte el <h3> en un contenedor flexbox */
+    justify-content: center
+}
+
+.section.rellenar {
+    background-color: #ffffff;  /* Fondo blanco */
+    padding: 20px;              /* Espaciado interior */
+    border-radius: 10px;        /* Bordes redondeados */
+    margin: 10px 0;             /* Margen superior e inferior */
+    text-align: center;         /* Centrar el texto */
+    display: flex;
+    flex-direction: column;     /* Disponer los elementos de arriba a abajo */
+    justify-content: center;    /* Centrar los elementos verticalmente */
+    align-items: center;        /* Centrar los elementos horizontalmente */
+    height: 100vh;              /* Establece la altura de la sección (opcional, puede ajustarse) */
+    width: 100%
+}
+
+
+/* Estilos para los botones */
+button {
+    padding: 10px 15px;
+    margin: 10px 5px; /* Margen para separación entre botones */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Botón de solicitar agua */
+button.btn-request {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+button.btn-request:hover {
+    background-color: #3e8e41; /* Verde más oscuro al pasar el cursor */
+}
+
+/* Botón de cancelar */
+button.btn-cancel {
+    background-color: #f44336; /* Rojo */
+    color: white;
+}
+
+button.btn-cancel:hover {
+    background-color: #d32f2f; /* Rojo más oscuro al pasar el cursor */
+}
 
 /* Responsividad */
 @media (max-width: 768px) {
     .row {
         flex-direction: column; /* Apila las secciones verticalmente */
         gap: 10px;
+    }
+    button.btn-logout {
+        font-size: 12px; /* Reduce el tamaño del botón en pantallas pequeñas */
+        padding: 8px 10px;
     }
 }
