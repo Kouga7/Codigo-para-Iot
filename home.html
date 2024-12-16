@@ -13,7 +13,8 @@
     <header class="hero">
         <img src="./images/UAN.jpg" alt="Descripción de la imagen" width="300" height="200">
         <p>UNIVERSIDAD NACIONAL DE HUANCAVELICA</p>
-        <p>Control y monitoreo de los recursos de agua en tiempo real.</p>
+        <p>Centro de control de recursos hidricos en tiempo real
+            (Telemetría).</p>
     </header>
 
     <section class="row">
@@ -40,7 +41,7 @@
             <button onclick="requestWater()">Solicitar Agua</button>
         </div>
         <div>
-            <button onclick="activateWater()">Cancelar</button>
+            <button onclick="cancelWater()">Cancelar</button>
         </div>
     </section>
 
@@ -48,14 +49,21 @@
         <h2>Monitoreo en Tiempo Real</h2>
         <p>Traslado del agua: <span id="waterLevel">Cargando...</span>L</p>
     </section>
+
+    <!-- Botón para cerrar sesión -->
+    <footer>
+        <button onclick="logout()">Cerrar sesión</button>
+    </footer>
+
     <script>
         // Función para cerrar sesión y borrar el estado del usuario
         function logout() {
+            // Elimina el token de sesión
             localStorage.removeItem('isLoggedIn');
-            window.location.href = "login.html";
+            window.location.href = "index.html"; // Redirige al login
         }
 
-        // Ejemplo de funciones de control del sistema
+        // Función para solicitar agua
         function requestWater() {
             const liters = document.getElementById('litros').value;
             if (liters > 0) {
@@ -65,6 +73,7 @@
             }
         }
 
+        // Función para cancelar la solicitud de agua
         function cancelWater() {
             alert("Se ha cancelado la solicitud de agua.");
         }
