@@ -23,17 +23,20 @@
     </div>
 
     <script>
-        function validateLogin(event) {
+    function validateLogin(event) {
             event.preventDefault(); // Evita el envío del formulario
 
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Usuario y contraseña definidos como texto
+            // Usuario y contraseña válidos (definidos como texto)
             const validUsername = "SDR312K";
             const validPassword = "KR_e@7.JazT";
 
             if (username === validUsername && password === validPassword) {
+                // Guarda la sesión en localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+
                 // Redirige a la página principal si los datos son correctos
                 window.location.href = "home.html";
             } else {
@@ -44,3 +47,4 @@
     </script>
 </body>
 </html>
+
