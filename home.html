@@ -134,10 +134,10 @@
     document.getElementById('waterLevel').textContent = 'Cargando'; // Restablecer el monitoreo
 }
 // Dirección IP del ESP32 (cámbiala por la correcta)
-const esp32IP = 'http://192.168.0.141'; 
+const esp32IP = 'https://192.168.0.141'; 
 
 function sendCommand(command) {
-    const esp32IP = 'http://192.168.0.141';  // Cambia esto por la IP de tu ESP32
+    const esp32IP = 'https://192.168.0.141';  // Cambia esto por la IP de tu ESP32
     const url = `${esp32IP}/?led=${command}`; // Construir la URL con el comando
     console.log(`Enviando solicitud a: ${url}`);  // Verificar la URL en la consola
 
@@ -148,7 +148,7 @@ function sendCommand(command) {
         url = `${esp32IP}/off`; // Ruta para apagar
     }
 
-    // Realiza la solicitud HTTP al ESP32
+    // Realiza la solicitud HTTPS al ESP32
     fetch(url)
         .then(response => response.text())
         .then(data => {
