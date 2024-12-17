@@ -58,7 +58,7 @@
             <label for="litros">Solicitar litros de agua:</label>
             <input type="number" id="litros" placeholder="Litros" min="0">
             <button onclick="requestWater();sendCommand('on')">Solicitar Agua</button>
-            <button onclick="clearInputs();cancelWater();sendCommand('off')" class="btn-cancel">Cancelar</button>
+            <button onclick="sendCommand('off')" class="btn-cancel">Cancelar</button>
 
         </div>
         <h3>Monitoreo en Tiempo Real</h3>
