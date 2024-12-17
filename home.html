@@ -138,7 +138,6 @@ const esp32IP = 'http://192.168.0.141';
 
 function sendCommand(command) {
     const esp32IP = 'http://192.168.0.141';  // Cambia esto por la IP de tu ESP32
-    const url = `${esp32IP}/?led=${command}`; // Construir la URL con el comando
     console.log(`Enviando solicitud a: ${url}`);  // Verificar la URL en la consola
 
     // Configura la ruta del ESP32
